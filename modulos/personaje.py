@@ -5,6 +5,9 @@ class Personaje:
         print("__________________________________________")
         print("|      Iniciaras con 100 monedas :3      |")
         self.dinero = 100
-        self.vacas = {}
-        self.gallinas = {}
-        self.ovejas = {}
+        self.animales = []
+        self.cultivos = []
+        self.animales_mejora_1 = False
+        self.animales_mejora_2 = False
+        self.cultivos_mejora_1 = False
+        self.cultivos_mejora_2 = False
