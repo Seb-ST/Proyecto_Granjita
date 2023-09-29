@@ -23,8 +23,6 @@ def main():
     while True:                            #MENU PRINCIPAL
         print('                         ')
         print('                         ')
-        
-        
         print('Animales de mi Granaja: ')
         print('Nombre: ', animal1.nombre)
         print('1 - Estadisticas del animal ')

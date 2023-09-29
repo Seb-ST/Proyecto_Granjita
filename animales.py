@@ -14,8 +14,6 @@ class Animal:
         else:
             if self.salud <= 0:
                 print('Estoy muerto...')
-            else:
-                self.salud -= 2
 
     # ACARICIAR AL ANIMAL
     def happy(self):
@@ -27,14 +25,24 @@ class Animal:
             self.felicidad += 2
 
     # ENFERMEDADES DEL ANIMAL
-    def enfermedad1(self):
-        pass
+    def enfermedad(self):
+        if self.felicidad == 0:
+            self.salud -= 5
+            self.energia -= 10
+    
+    # PRODUCCION DEL ANIMAL
+    def produccion(self):
+        if self.salud < 100:
+            self.produccion -= 20
+        else:
+            if self.salud == 0:
+                self.produccion == 100 
+
 
     # EDAD DEL ANIMAL
     def años(self):
         if self.edad == 0:
             self.edad +=1
-
 
             
     # ALIMENTAR A EL ANIMAL
@@ -64,7 +72,3 @@ class Animal:
         if self.salud >= 0:
             self.salud += 50
 
-
-    def __str__(self):
-        return f"El Nombre de la Vaca es: {self.nombre}"
-    
