@@ -1,4 +1,4 @@
-from animales import Vaca
+from animales import Animal
 from tiempo import RepeatTimer
 
 
@@ -9,9 +9,9 @@ def main():
     print('                         ')
     nombre = input('Ingrese El nombre Del animal: ')
     print('                         ')
-    animal1 = Vaca(nombre)
+    animal1 = Animal(nombre)
 
-    timer = RepeatTimer(3, animal1.respirar)
+    timer = RepeatTimer(1, animal1.respirar)
     timer.start()
 
     timer = RepeatTimer(30, animal1.años)
@@ -23,6 +23,8 @@ def main():
     while True:                            #MENU PRINCIPAL
         print('                         ')
         print('                         ')
+        
+        
         print('Animales de mi Granaja: ')
         print('Nombre: ', animal1.nombre)
         print('1 - Estadisticas del animal ')
@@ -38,6 +40,7 @@ def main():
             print('                         ')
             print('Animal No. 1: ')
             print('Nombre: ', animal1.nombre)
+            print('Edad: ', animal1.edad)
             print('Salud', animal1.salud)
             print('Felicidad ', animal1.felicidad)
             print('Energia ', animal1.energia )

@@ -1,5 +1,5 @@
 
-class Vaca:
+class Animal:
     def __init__(self, nombre):
         self.nombre = nombre
         self.edad = 0
@@ -25,6 +25,10 @@ class Vaca:
     def acariciar(self):
         if self.felicidad > 0:
             self.felicidad += 2
+
+    # ENFERMEDADES DEL ANIMAL
+    def enfermedad1(self):
+        pass
 
     # EDAD DEL ANIMAL
     def años(self):
