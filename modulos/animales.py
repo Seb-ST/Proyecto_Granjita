@@ -1,6 +1,6 @@
 class Animales:
     def __init__(self):
-        self.produccion = ""
+        self.produccion = 0
         self.tipo = self.tipo_animal()
         self.nombre = input("¿Cual es el nombre del animal?: ")
         self.edad = 0
@@ -22,7 +22,7 @@ class Animales:
     def happy(self):
         if self.felicidad > 0:
             self.felicidad -= 2
-    
+
     def acariciar(self):
         if self.felicidad > 0:
             self.felicidad += 2
@@ -31,7 +31,7 @@ class Animales:
     def anios(self):
         if self.edad == 0:
             self.edad += 1
-            
+
     # ALIMENTAR A EL ANIMAL
     def concentrado(self):
         if self.energia >= 0:
@@ -62,11 +62,13 @@ class Animales:
         return f"El Nombre de la Vaca es: {self.nombre}"
 
     def tipo_animal(self):
-        tipo = input("¿Que tipo de animal quiere comprar?: "
-                     "\n1.Vaca"
-                     "\n2.Gallina"
-                     "\n3.Oveja"
-                     "\nEscoja un tipo(1 o 2 o 3): ")
+        print("------------------------------------------")
+        tipo = input("|      ¿Que tipo de animal quiere?:      |"
+                     "\n|                1.Vaca.                 |"
+                     "\n|                2.Gallina.              |"
+                     "\n|                3.Oveja.                |"
+                     "\n        Escoja un tipo(1 o 2 o 3): ")
+        print("------------------------------------------")
 
         if tipo == "1":
             self.produccion = "Leche"
