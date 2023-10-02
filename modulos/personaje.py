@@ -7,7 +7,7 @@ class Personaje:
         self.dinero = 100
         self.animales = []
         self.cultivos = []
-        self.objetos = ["1", "2", "3", "4"]
+        self.objetos = []
         self.animales_mejora_1 = False
         self.animales_mejora_2 = False
         self.cultivos_mejora_1 = False

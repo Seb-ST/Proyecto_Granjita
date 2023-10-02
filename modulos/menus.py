@@ -4,6 +4,7 @@ import personaje
 dia = 0
 mes = 0
 anio = 0
+carisias = False
 
 
 def menu_bienvenida():
@@ -14,15 +15,15 @@ def menu_bienvenida():
     print("__________________________________________")
     print("|                                        |")
     print("|            Crea tu personaje:          |")
-    jugador = personaje.Personaje()
+    persona = personaje.Personaje()
     print("|     Iniciaras con un animal, puede     |\n"
           "|     comprar mas cosas en la tienda     |")
     print("------------------------------------------")
     animal = animales.Animales()
 
-    jugador.animales.append(animal)
+    persona.animales.append(animal)
 
-    return jugador
+    return persona
 
 
 jugador = menu_bienvenida()
@@ -64,11 +65,11 @@ def menu_tienda():
         print("------------------------------------------")
         print("|          ¿Que quiere hacer?:           |")
         print("------------------------------------------")
-        print("|          1.Comprar animales            |")
-        print("|          2.Comprar semillas            |")
-        print("|          3.Ver las mejoras             |")
-        print("|          4.Vender objetos              |")
-        print("|          5.Regresar al menu            |")
+        print("|         1.Comprar animales - $100      |")
+        print("|         2.Comprar semillas - $20       |")
+        print("|         3.Ver las mejoras              |")
+        print("|         4.Vender objetos               |")
+        print("|         5.Regresar al menu             |")
         print("------------------------------------------")
 
         opcion = input("Escoja la opcion que desea(1/2/3/4): ")
@@ -76,8 +77,11 @@ def menu_tienda():
         print()
 
         if opcion == '1':
-            animal = animales.Animales()
-            jugador.animales.append(animal)
+            if jugador.dinero > 100:
+                animal = animales.Animales()
+                jugador.animales.append(animal)
+            else:
+                print("Dinero insuficiente. ):")
 
         elif opcion == '2':
             pass
@@ -107,8 +111,10 @@ def menu_tienda():
                 jugador.dinero -= 1
 
         elif opcion == '4':
-            objetos = int(len(jugador.objetos)) * 10
+            objetos = int(len(jugador.objetos)) * 20
             jugador.dinero += objetos
+            for i in range(0, len(jugador.objetos)):
+                del jugador.objetos[i]
 
             print(f"Ha vendido sus objetos a {objetos} monedas.")
 
@@ -151,50 +157,88 @@ def menu_animales():
                 print("------------------------------------------")
 
         if opcion == 2:
-            for i in jugador.animales:
-                while True:
-                    print("------------------------------------------")
-                    print('|           ALIMENTAR A LA VACA:          |')  # OPCION 2
-                    print("------------------------------------------")
-                    print('|           1 - Consentrado.              |')
-                    print('|           2 - Cesped.                   |')
-                    print('|           3 - Regresar al menú.         |')
-                    print("------------------------------------------")
-                    opcion = int(input('Elija una opcion:  '))
-                    print('                         ')
-                    if opcion == 1:
-                        i.concentrado()
-                    if opcion == 2:
-                        i.cesped()
-                    if opcion == 3:
-                        break
+            while True:
+                print("------------------------------------------")
+                print('|           ALIMENTAR A LA VACA:          |')  # OPCION 2
+                print("------------------------------------------")
+                print('|          1 - Consentrado - $10          |')
+                print('|          2 - Cesped - $5                |')
+                print('|          3 - Regresar al menú.          |')
+                print("------------------------------------------")
+                opcionsub = int(input('Elija una opcion:  '))
+                print('                         ')
+                if opcionsub == 1:
+                    for i in range(0, len(jugador.animales)):
+                        if jugador.dinero > 10:
+                            jugador.dinero -= 10
+                            jugador.animales[i].concentrado()
+                            print(f"Se ha alimentado a {jugador.animales[i].nombre} con concentrado.")
+                        else:
+                            print("Dinero insuficiente. ):")
+                if opcionsub == 2:
+                    for i in range(0, len(jugador.animales)):
+                        if jugador.dinero > 5:
+                            jugador.dinero -= 5
+                            print("Se ha alimentado con cesped.")
+                            jugador.animales[i].concentrado()
+                        else:
+                            print("Dinero insuficiente. ):")
+                if opcionsub == 3:
+                    break
 
         if opcion == 3:
-            for i in jugador.animales:
-                i.acariciar()  # OPCION 3
+            global carisias
+            carisiaas = carisias
+            if not carisiaas:
+                for i in range(0, len(jugador.animales)):
+                    jugador.animales[i].acariciar()
+                    carisias = True
+                    print(f"Has acariciado a {jugador.animales[i].nombre}")
+
+            else:
+                print("Ya has acariciado a los animales hoy :D.")
 
         if opcion == 4:
-            for i in jugador.animales:
-                while True:
-                    print("------------------------------------------")
-                    print('|           CURAR A MI MASCOTA:          |')  # OPCION 4
-                    print("------------------------------------------")
-                    print('|           1 - Vitamina.                |')
-                    print('|           2 - Jarabe.                  |')
-                    print('|           3 - Vacuna.                  |')
-                    print('|           4 - Regresar al menú.        |')
-                    print("------------------------------------------")
+            while True:
+                print("------------------------------------------")
+                print('|           CURAR A MI MASCOTA:          |')  # OPCION 4
+                print("------------------------------------------")
+                print('|           1 - Vitamina - $5            |')
+                print('|           2 - Jarabe - $10             |')
+                print('|           3 - Vacuna - $20             |')
+                print('|           4 - Regresar al menú.        |')
+                print("------------------------------------------")
 
-                    opcion = int(input('Ingrese una opcion'))
-                    print('                         ')
-                    if opcion == 1:
-                        i.vitamina()
-                    if opcion == 2:
-                        i.jarabe()
-                    if opcion == 3:
-                        i.vacuna()
-                    if opcion == 4:
-                        break
+                opcionsub = int(input('Ingrese una opcion'))
+                print('                         ')
+                if opcionsub == 1:
+                    for i in range(0, len(jugador.animales)):
+                        if jugador.dinero > 5:
+                            jugador.dinero -= 5
+                            jugador.animales[i].vitamina()
+                            print(f"Se ha curado a {jugador.animales[i].nombre} con vitaminas.")
+                        else:
+                            print("Dinero insuficiente. ):")
+
+                if opcionsub == 2:
+                    for i in range(0, len(jugador.animales)):
+                        if jugador.dinero > 10:
+                            jugador.dinero -= 10
+                            jugador.animales[i].jarabe()
+                            print(f"Se ha curado a {jugador.animales[i].nombre} con jarabe.")
+                        else:
+                            print("Dinero insuficiente. ):")
+
+                if opcionsub == 3:
+                    for i in range(0, len(jugador.animales)):
+                        if jugador.dinero > 20:
+                            jugador.dinero -= 20
+                            jugador.animales[i].vacuna()
+                            print(f"Se ha curado a {jugador.animales[i].nombre} con vacunas.")
+                        else:
+                            print("Dinero insuficiente. ):")
+                if opcionsub == 4:
+                    break
 
         if opcion == 5:
             break
@@ -207,8 +251,26 @@ def juego_principal():
 
     # Ciclo del juego infinito
     while True:
+        global carisias
+        carisias = False
         # Ciclo de un dia
         while horas < 24:
+            for i in range(0, len(jugador.animales)):
+                jugador.animales[i].salud -= 20
+                jugador.animales[i].energia -= 20
+                jugador.animales[i].felicidad -= 20
+                jugador.animales[i].respirar()
+
+                if jugador.animales[i].muerto:
+                    del jugador.animales[i]
+                if jugador.animales[i].felicidad > 50:
+                    jugador.objetos.append(jugador.animales[i].producir())
+                    print(f"{jugador.animales[i].nombre} - {jugador.animales[i].tipo} "
+                          f"ha producido algo hoy. :)")
+                else:
+                    print(f"{jugador.animales[i].nombre} - {jugador.animales[i].tipo} "
+                          f"esta tan triste que no puede porducir. ):")
+
             print(f"\n\nJugador: {jugador.nombre} Dinero: {jugador.dinero} Fecha: {dia}/{mes}/{anio} Hora: {horas}")
             menu_pricipal()
         dia += 1
