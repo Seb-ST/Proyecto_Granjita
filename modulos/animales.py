@@ -7,16 +7,16 @@ class Animales:
         self.salud = 100
         self.energia = 100
         self.felicidad = 100
+        self.muerto = False
 
     # RESPIRACION DEL ANIMAL
     def respirar(self):
         if self.energia > 0:
-            self.energia -= 1
+            self.energia -= 10
         else:
             if self.salud <= 0:
-                print('Estoy muerto...')
-            else:
-                self.salud -= 2
+                self.muerto = True
+                print(f"{self.nombre} - {self.tipo} ha muerto.")
 
     # ACARICIAR AL ANIMAL
     def happy(self):
@@ -25,7 +25,7 @@ class Animales:
 
     def acariciar(self):
         if self.felicidad > 0:
-            self.felicidad += 2
+            self.felicidad += 40
 
     # EDAD DEL ANIMAL
     def anios(self):
@@ -79,3 +79,6 @@ class Animales:
         elif tipo == "3":
             self.produccion = "Lana"
             return "Oveja"
+
+    def producir(self):
+        return self.produccion
