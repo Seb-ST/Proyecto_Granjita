@@ -19,4 +19,7 @@ a los usuarios gestionar una granja virtual, tomar decisiones y observar cómo e
 - Github
 
 ## Créditos
-Desarrollado por: Sebastian Siquina, Fatima Zarate
+Desarrollado por: 
+- Sebastian Josué Siquiná Tzún, carne 1581223.
+- Julio Josué Anibal Cojom Pacaja, carne 1639021.
+- Fátima de Lourdes Zárate Alvarado, carne 1557223.
